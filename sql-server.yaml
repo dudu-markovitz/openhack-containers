@@ -1,7 +1,45 @@
-sqldata:
-  image: mcr.microsoft.com/mssql/server:2019-latest
-  environment:
-    - SA_PASSWORD=petrucCiani1!
-    - ACCEPT_EULA=Y
-  ports:
-    - "5434:1433"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sql-server
+  namespace: backend
+  labels:
+    app: sql-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sql-server
+  template:
+    metadata:
+      labels:
+        app: sql-server
+    spec:
+      containers:
+      - name: sql-server
+        image: mcr.microsoft.com/mssql/server:2019-CU5-ubuntu-18.04
+        ports:
+        - containerPort: 1433
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        env:
+        - name: SA_PASSWORD
+          value: petrucCiani1!
+        - name: ACCEPT_EULA
+          value: "Y"
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: sql-server
+spec: 
+  type: ClusterIP #LoadBalancer 
+  ports: 
+  - port: 1433 
+    targetPort: 1433
+  selector: 
+    app: sql-server
+
+
