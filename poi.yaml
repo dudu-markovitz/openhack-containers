@@ -26,11 +26,11 @@ spec:
             cpu: "500m"
         env:
         - name: SQL_USER
-          value: sqladminwLz8634
+          value: sa
         - name: SQL_PASSWORD
-          value: rX8hh5Ga6
+          value: petrucCiani1!
         - name: SQL_SERVER
-          value: sqlserverwlz8634.database.windows.net
+          value: sql_server
         - name: SQL_DBNAME
           value: mydrivingDB
         - name: ASPNETCORE_ENVIRONMENT

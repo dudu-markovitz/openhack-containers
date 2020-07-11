@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-load
+  namespace: backend
+  labels:
+    app: data-load
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-load
+  template:
+    metadata:
+      labels:
+        app: data-load
+    spec:
+      containers:
+      - name: data-load
+        image: openhack/data-load:v1
+        ports:
+        - containerPort: 1433
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        env:
+        - name: SQLFQDN
+          value: sql-server
+        - name: SQLUSER
+          value: sa
+        - name: SQLPASS
+          value: petrucCiani1!    
+        - name: SQLDB
+          value: mydrivingDB                
+
+
