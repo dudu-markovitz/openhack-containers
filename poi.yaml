@@ -27,6 +27,12 @@ spec:
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
+        - name: CONFIG_FILES_PATH
+          value: "/mnt/secrets-store"
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
       volumes:
         - name: secrets-store-inline
           csi:
