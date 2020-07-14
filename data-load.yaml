@@ -26,9 +26,9 @@ spec:
             cpu: "500m"
         env:
         - name: SQLFQDN
-          value: dumarkov.database.windows.net
+          value: sql-server.backend
         - name: SQLUSER
-          value: dumarkov
+          value: sa
         - name: SQLPASS
           value: petrucCiani1!    
         - name: SQLDB
